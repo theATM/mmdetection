@@ -154,6 +154,13 @@ class DynamicSoftLabelAssigner(BaseAssigner):
         pairwise_ious = self.iou_calculator(valid_decoded_bbox, gt_bboxes)
         iou_cost = -torch.log(pairwise_ious + EPS) * self.iou_weight
 
+        #print(num_valid)
+        #print(pred_scores.shape)
+        #print(pred_scores.shape[-1])
+        #print(pred_scores)
+        #print(gt_labels.to(torch.int64))
+        #print(F.one_hot(gt_labels.to(torch.int64),pred_scores.shape[-1]))
+        #print("siemamo")
         gt_onehot_label = (
             F.one_hot(gt_labels.to(torch.int64),
                       pred_scores.shape[-1]).float().unsqueeze(0).repeat(

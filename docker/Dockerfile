@@ -7,7 +7,8 @@ FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
 ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0 7.5 8.0 8.6+PTX" \
     TORCH_NVCC_FLAGS="-Xfatbin -compress-all" \
     CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" \
-    FORCE_CUDA="1"
+    FORCE_CUDA="1" \
+    CUDA_LAUNCH_BLOCKING=1
 
 # Avoid Public GPG key error
 # https://github.com/NVIDIA/nvidia-docker/issues/1631
@@ -36,5 +37,9 @@ RUN conda clean --all \
     && git clone https://github.com/open-mmlab/mmdetection.git /mmdetection \
     && cd /mmdetection \
     && pip install --no-cache-dir -e .
+
+RUN pip install future tensorboard
+RUN pip install pip install openxlab==0.0.8
+RUN pip install setuptools==59.5.0
 
 WORKDIR /mmdetection

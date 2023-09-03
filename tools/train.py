@@ -66,6 +66,7 @@ def main():
     # training speed.
     setup_cache_size_limit_of_dynamo()
 
+    print("Loag congings :<|")
     # load config
     cfg = Config.fromfile(args.config)
     cfg.launcher = args.launcher
@@ -130,4 +131,9 @@ def main():
 
 
 if __name__ == '__main__':
+    import os
+
+    # get the current working directory
+    current_working_directory = os.getcwd()
+    print(current_working_directory)
     main()

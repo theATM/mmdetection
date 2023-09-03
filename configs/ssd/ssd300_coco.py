@@ -36,22 +36,24 @@ test_pipeline = [
         meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
                    'scale_factor'))
 ]
-train_dataloader = dict(
-    batch_size=8,
-    num_workers=2,
-    batch_sampler=None,
-    dataset=dict(
-        _delete_=True,
-        type='RepeatDataset',
-        times=5,
-        dataset=dict(
-            type={{_base_.dataset_type}},
-            data_root={{_base_.data_root}},
-            ann_file='annotations/instances_train2017.json',
-            data_prefix=dict(img='train2017/'),
-            filter_cfg=dict(filter_empty_gt=True, min_size=32),
-            pipeline=train_pipeline,
-            backend_args={{_base_.backend_args}})))
+#train_dataloader = dict(
+#    batch_size=8,
+#    num_workers=2,
+#    batch_sampler=None,
+#    dataset=dict(
+#        _delete_=True,
+#        type='RepeatDataset',
+#        times=5,
+#        dataset=dict(
+#            type={{_base_.dataset_type}},
+#            data_root={{_base_.data_root}},
+#            ann_file='annotations/instances_train2017.json',
+#            data_prefix=dict(img='train2017/'),
+#            filter_cfg=dict(filter_empty_gt=True, min_size=32),
+#            pipeline=train_pipeline,
+#            backend_args={{_base_.backend_args}})))
+
+train_dataloader = dict(batch_size=8, dataset=dict(pipeline=train_pipeline))
 val_dataloader = dict(batch_size=8, dataset=dict(pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
