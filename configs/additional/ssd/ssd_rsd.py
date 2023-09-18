@@ -1,6 +1,6 @@
 _base_ = '../../ssd/ssd300_coco.py'
 
-data_root = 'data/RSD-COCO-DOTANA-T0/' # dataset root
+data_root = 'data/RSD-COCO-0/' # dataset root
 
 metainfo = {
     'classes': ('airport','helicopter', 'oiltank','plane','warship'),
@@ -13,8 +13,8 @@ train_dataloader = dict(
         type='CocoDataset',
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/train/'),
-        ann_file='annotations/instances_train.json'))
+        data_prefix=dict(img='train/images/'),
+        ann_file='train/_annotations.coco.json'))
 
 val_dataloader = dict(
     batch_size=4,
@@ -22,8 +22,8 @@ val_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/val/'),
-        ann_file='annotations/instances_val.json'))
+        data_prefix=dict(img='valid/images/'),
+        ann_file='valid/_annotations.coco.json'))
 
 test_dataloader = dict(
     batch_size=4,
@@ -31,13 +31,13 @@ test_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/test/'),
-        ann_file='annotations/instances_test.json'))
+        data_prefix=dict(img='test/images/'),
+        ann_file='test/_annotations.coco.json'))
 
 
 train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=24, val_interval=1)
-val_evaluator = dict(ann_file=data_root + 'annotations/instances_val.json')
-test_evaluator = dict(ann_file=data_root + 'annotations/instances_test.json')
+val_evaluator = dict(ann_file=data_root + 'valid/_annotations.coco.json')
+test_evaluator = dict(ann_file=data_root + 'test/_annotations.coco.json')
 
 
 # load COCO pre-trained weight

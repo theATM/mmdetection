@@ -3,7 +3,7 @@ _base_ = '../../rtmdet/rtmdet_s_8xb32-300e_coco.py'
 
 data_root = 'data/RSD-COCO-0/' # dataset root
 
-train_batch_size_per_gpu = 16
+train_batch_size_per_gpu = 8
 train_num_workers = 4
 
 max_epochs = 50

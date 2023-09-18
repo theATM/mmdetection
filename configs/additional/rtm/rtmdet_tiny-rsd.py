@@ -14,7 +14,7 @@ base_lr = 0.00008
 metainfo = {
     'classes': ('airport','helicopter', 'oiltank','plane','warship'),
     'palette': [
-        (220, 20, 60),
+        (220, 20, 60), (255, 101, 0) , (0, 253, 0), (0, 253, 255) , (0, 0, 255)
     ]
 }
 
