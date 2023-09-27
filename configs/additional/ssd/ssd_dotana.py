@@ -4,6 +4,7 @@ data_root = 'data/RSD-COCO-DOTANA-T0/' # dataset root
 
 metainfo = {
     'classes': ('airport','helicopter', 'oiltank','plane','warship'),
+    'palette': [   (220, 0, 0), (255, 145, 144), (255, 139, 58), (3, 255, 254), (3, 0, 135) ]
 }
 
 train_dataloader = dict(

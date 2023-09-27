@@ -1,6 +1,6 @@
-_base_ = '../../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+_base_ = '../../faster_rcnn/faster-rcnn_r50_fpn_1x_coco-adam.py'
 
-data_root = 'data/RSD-COCO-DOTANA-T0/' # dataset root
+data_root = 'data/RSD-COCO-0/' # dataset root
 
 metainfo = {
     'classes': ('airport','helicopter', 'oiltank','plane','warship'),
@@ -10,35 +10,35 @@ metainfo = {
 }
 
 train_dataloader = dict(
-    batch_size=8,
-    num_workers=8,
+    batch_size=4,
+    num_workers=4,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/train/'),
-        ann_file='annotations/instances_train.json'))
+        data_prefix=dict(img='train/images/'),
+        ann_file='train/_annotations.coco.json'))
 
 val_dataloader = dict(
     batch_size=4,
-    num_workers=4,
+    num_workers=2,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/val/'),
-        ann_file='annotations/instances_val.json'))
+        data_prefix=dict(img='valid/images/'),
+        ann_file='valid/_annotations.coco.json'))
 
 test_dataloader = dict(
     batch_size=4,
-    num_workers=4,
+    num_workers=2,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        data_prefix=dict(img='images/test/'),
-        ann_file='annotations/instances_test.json'))
+        data_prefix=dict(img='test/images/'),
+        ann_file='test/_annotations.coco.json'))
 
-val_evaluator = dict(ann_file=data_root + 'annotations/instances_val.json')
+val_evaluator = dict(ann_file=data_root + 'valid/_annotations.coco.json')
 
-test_evaluator = dict(ann_file=data_root + 'annotations/instances_test.json')
+test_evaluator = dict(ann_file=data_root + 'test/_annotations.coco.json')
 
 model = dict(roi_head=dict(bbox_head=dict(num_classes=5)))
 
@@ -62,7 +62,7 @@ param_scheduler = [
 # optimizer
 optim_wrapper = dict(
     type='OptimWrapper',
-    optimizer=dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001))
+    optimizer=dict(type='AdamW', lr=0.001, weight_decay=0.05))
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically

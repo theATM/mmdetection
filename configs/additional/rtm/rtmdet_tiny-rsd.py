@@ -49,6 +49,9 @@ val_evaluator = dict(ann_file=data_root + 'valid/_annotations.coco.json')
 
 test_evaluator = dict(ann_file=data_root + 'test/_annotations.coco.json')
 
+
+
+
 model = dict(bbox_head=dict(num_classes=5))
 
 # learning rate

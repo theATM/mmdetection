@@ -1,4 +1,4 @@
-_base_ = '../../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+_base_ = '../../faster_rcnn/faster-rcnn_r50_fpn_1x_coco-adam.py'
 
 data_root = 'data/RSD-COCO-DOTANA-T0/' # dataset root
 
@@ -10,8 +10,8 @@ metainfo = {
 }
 
 train_dataloader = dict(
-    batch_size=8,
-    num_workers=8,
+    batch_size=4,
+    num_workers=4,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -20,7 +20,7 @@ train_dataloader = dict(
 
 val_dataloader = dict(
     batch_size=4,
-    num_workers=4,
+    num_workers=2,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -29,7 +29,7 @@ val_dataloader = dict(
 
 test_dataloader = dict(
     batch_size=4,
-    num_workers=4,
+    num_workers=2,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -62,7 +62,7 @@ param_scheduler = [
 # optimizer
 optim_wrapper = dict(
     type='OptimWrapper',
-    optimizer=dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001))
+    optimizer=dict(type='AdamW', lr=0.001, weight_decay=0.05))
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically

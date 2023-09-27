@@ -5,13 +5,13 @@ data_root = 'data/RSD-COCO-0/' # dataset root
 metainfo = {
     'classes': ('airport','helicopter', 'oiltank','plane','warship'),
     'palette': [
-        (220, 20, 60),
+        (220, 20, 60), (255, 101, 0) , (0, 253, 0), (0, 253, 255) , (0, 0, 255)
     ]
 }
 
 train_dataloader = dict(
-    batch_size=4,
-    num_workers=4,
+    batch_size=8,
+    num_workers=8,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -20,7 +20,7 @@ train_dataloader = dict(
 
 val_dataloader = dict(
     batch_size=4,
-    num_workers=2,
+    num_workers=4,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -29,7 +29,7 @@ val_dataloader = dict(
 
 test_dataloader = dict(
     batch_size=4,
-    num_workers=2,
+    num_workers=4,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
@@ -39,6 +39,7 @@ test_dataloader = dict(
 val_evaluator = dict(ann_file=data_root + 'valid/_annotations.coco.json')
 
 test_evaluator = dict(ann_file=data_root + 'test/_annotations.coco.json')
+
 
 model = dict(roi_head=dict(bbox_head=dict(num_classes=5)))
 
@@ -63,6 +64,7 @@ param_scheduler = [
 optim_wrapper = dict(
     type='OptimWrapper',
     optimizer=dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001))
+
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically

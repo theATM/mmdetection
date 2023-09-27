@@ -46,6 +46,7 @@ val_evaluator = dict(ann_file=data_root + 'annotations/instances_val.json')
 
 test_evaluator = dict(ann_file=data_root + 'annotations/instances_test.json')
 
+
 model = dict(bbox_head=dict(num_classes=5))
 
 # load COCO pre-trained weight
