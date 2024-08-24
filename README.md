@@ -1,6 +1,6 @@
 # Custom MMDetection Pipeline
 
-This study repository contains the forked MMDetection project. It is a part of the AirDetection study. Main repo can be found [under this link](https://github.com/theATM/AirDetection). 
+This study repository contains the forked MMDetection project. It is a part of the AirDetection study. The Main repo can be found [under this link](https://github.com/theATM/AirDetection). 
 
 Here is the code used for training and testing various models. Custom configurations are
 stored in the "configs/additional/" directory. This ML toolbox has a modular design. Each architecture
@@ -22,9 +22,11 @@ has its own configuration files using a very similar config structure.
 ## Usage
 
 In order to train the models on the RSD-GOD and Dotana
-datasets, the MMDetection framework requires a slight change to the COCO format. It differed from the original, as all the classes, annotations and images have identifiers started from zero. There are RSD-COCO-0 annotations aviailable to download [here](https://drive.google.com/file/d/1aypqgUDdSnJbElffF6P864MAnz0v7BLb/view?usp=sharing).
+datasets, the MMDetection framework requires a slight change to the COCO format. It differed from the original, as all the classes, annotations and images have identifiers started from zero. There are RSD-COCO-0 annotations available to download [here](https://drive.google.com/file/d/1aypqgUDdSnJbElffF6P864MAnz0v7BLb/view?usp=sharing).
 
 ## RTMDet Results
+
+![RTMdet](https://github.com/user-attachments/assets/2236f34b-da52-45f8-9493-e28fe63558e6)
 
 
 ## Model Zoo
